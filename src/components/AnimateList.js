@@ -6,12 +6,14 @@ import { View, Animated } from 'react-native';
 export default class AnimateList extends Component {
   static propTypes = {
     index: PropTypes.number,
-    renderContent: PropTypes.elementType,
+    renderContent: PropTypes.any,
+    direction: PropTypes.string
   };
 
   static defaultProps = {
     index: 0,
     renderContent: <View />,
+    direction: "x"
   };
 
   constructor(props) {
@@ -31,15 +33,16 @@ export default class AnimateList extends Component {
   }
 
   render() {
-    const { index, renderContent } = this.props;
+    const { index, renderContent, direction } = this.props;
     this.delayValue = (index + 1) * 1000;
-    const translateX = this.state.animatedValue.interpolate({
+    const translate = this.state.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [this.delayValue, 1],
     });
+    const translateValue = direction == "x" ? { translateX : translate} : { translateY : translate};
 
     return (
-      <Animated.View style={{ transform: [{ translateX }] }}>
+      <Animated.View style={{ transform: [ translateValue ] }}>
         {renderContent}
       </Animated.View>
     );

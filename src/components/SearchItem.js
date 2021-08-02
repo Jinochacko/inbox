@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import { View, TextInput, Text, ImageBackground, CheckBox, StyleSheet } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 import styles from '../common/Styles';
 
 import Entypo from 'react-native-vector-icons/Entypo';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class SearchItem extends Component {
 
@@ -23,22 +21,14 @@ export default class SearchItem extends Component {
 
     render(){
         const { isSelected, search } = this.state;
-        return (<View style={[styles.mainWrap, styles.rowContent]}>
-                    <View style={[styles.checkboxWrap, styles.alignCenter]}>
-                        <CheckBox
-                            value={isSelected}
-                            style={styles.checkbox}
-                            onValueChange={() => this.setState({isSelected: !isSelected})}
-                        />
-                    </View>
-                    <View style={styles.searchInputWrap}>
-                        <FontAwesome name="search" style={[styles.clear, styles.searchIcon]} />
+        return (
+                    <View style={styles.searchContainer}>
+                        <View style={{flexDirection: 'row', width: '100%', marginBottom: 10}}>
+                            <Text style={{width: '95%', color: '#fff', fontSize: 18}}>Search Result</Text>
+                            <Entypo name="dots-three-vertical" style={{justifyContent: 'flex-end', color: '#fff', fontSize: 24}} />
+                        </View>
                         <TextInput style={styles.searchInput} placeholder="Search" onChangeText={(text)=>this.search(text)} />
-                        <Entypo name="circle-with-cross" style={styles.clear} />
                     </View>
-                    <View style={[styles.searchMenu, styles.alignCenter]}>
-                        <MaterialCommunityIcons name="microsoft-xbox-controller-menu" style={styles.searchMenuIcon} />
-                    </View>
-                </View>);
+                );
     }
 }

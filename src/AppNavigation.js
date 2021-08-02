@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { View, StatusBar } from 'react-native';
-import { createDrawerNavigator, DrawerItemList, DrawerContentScrollView } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Avatar } from 'react-native-elements';
-import Entypo from 'react-native-vector-icons/Entypo';
-import Inbox from './containers/Inbox';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import SimContainer from './containers/SimContainer';
+import Cart from './containers/Cart';
+import Order from './containers/Order';
+import Profile from './containers/Profile';
 import styles from './common/Styles';
+
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const CustomStatusBar = ({backgroundColor, ...props}) => (
   <View style={[styles.statusBar, { backgroundColor }]}>
@@ -14,46 +20,56 @@ const CustomStatusBar = ({backgroundColor, ...props}) => (
   </View>
 );
 
-const CustomDrawerContent = (props) => {
+function BottomTabs() {
   return (
-      <DrawerContentScrollView {...props}>
-        <View style={{flex: 1, backgroundColor: '#ccc', marginTop: -4, height: 250, alignItems: 'center', justifyContent: 'center'}}>
-          <Avatar size="xlarge" icon={{name: 'envelope', type: 'font-awesome-5', color: "#282828"}} />
-        </View>
-        <DrawerItemList {...props} />
-      </DrawerContentScrollView>
-  );
-}
-
-const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
-
-function InboxScreen() {
-  return (
-    <Drawer.Navigator 
-      drawerContent={(props) => <CustomDrawerContent {...props} />}
-      initialRouteName="Home" 
-      drawerContentOptions={{
-        contentContainerStyle: {marginVertical: 0, margin: 0},
-        labelStyle: {color: "#282828"},
-        itemStyle: {marginVertical: 0, marginHorizontal: 0, paddingLeft: 20}
+    <Tab.Navigator tabBarOptions={{
+        style: { position: 'absolute', bottom: 50, height: 70, backgroundColor: '#F6F7F8'},
+        labelStyle: {fontSize: 16, marginBottom: 10},
+        activeTintColor: '#2AACE2'
       }}>
-      <Drawer.Screen name="Inbox" component={Inbox} options={{ drawerIcon: () => <Entypo size={23} name="folder" style={{color: '#282828'}} /> }} />
-    </Drawer.Navigator>
+      <Tab.Screen name="Search" component={SimContainer} options={{
+          tabBarLabel: 'Search',
+          labelStyle: {fontSize: 16},
+          tabBarIcon: ({ color = '#282828', size = 12 }) => (
+            <MaterialIcons name="search" color={color} size={24} />
+          ),
+        }} />
+      <Tab.Screen name="Cart" component={Cart} options={{
+          tabBarLabel: 'Cart',
+          labelStyle: {fontSize: 16},
+          tabBarIcon: ({ color = '#282828', size = 12 }) => (
+            <MaterialIcons name="shopping-cart" color={color} size={24} />
+          ),
+        }} />
+      <Tab.Screen name="Orders" component={Order} options={{
+          tabBarLabel: 'Orders',
+          labelStyle: {fontSize: 16},
+          tabBarIcon: ({ color = '#282828', size = 12 }) => (
+            <MaterialCommunityIcons name="truck" color={color} size={24} />
+          ),
+        }} />
+      <Tab.Screen name="Profile" component={Profile} options={{
+          tabBarLabel: 'Profile',
+          labelStyle: {fontSize: 16},
+          tabBarIcon: ({ color = '#282828', size = 12 }) => (
+            <MaterialCommunityIcons name="account" color={color} size={24} />
+          ),
+        }} />
+    </Tab.Navigator>
   );
 }
 
 export default function AppNavigation() {
   return (
-  <View style={{flex: 1}}>
-        <CustomStatusBar backgroundColor="#ccc" barStyle="light-content" />
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{
-            headerShown: false
-          }}>
-            <Stack.Screen name="User" component={InboxScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-  </View>
+    <View style={{flex: 1}}>
+          <CustomStatusBar backgroundColor="#2AACE2" barStyle="light-content" />
+          <NavigationContainer>
+            <Stack.Navigator screenOptions={{
+              headerShown: false
+            }}>
+              <Stack.Screen name="SimList" component={BottomTabs} />
+            </Stack.Navigator>
+          </NavigationContainer>
+    </View>
   );
 }

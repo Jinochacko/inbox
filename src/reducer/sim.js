@@ -1,30 +1,34 @@
-import {GET_MESSAGE, GET_MESSAGE_SUCCESS,GET_MESSAGE_ERROR} from '../common/constants';
+import {GET_SIMLIST, GET_SIMLIST_SUCCESS, GET_SIMLIST_ERROR} from '../common/constants';
 
 const initialState = {
-  messages: {
-    data: [],
+  simList: {
+    data: {
+      data: [],
+      operators: [],
+      plans: []
+    },
     isFetching: false,
   }
 };
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_MESSAGE:
+    case GET_SIMLIST:
       return {
         ...state,
-        messages: { isFetching: true,}
+        simList: { isFetching: true,}
       };
-    case GET_MESSAGE_SUCCESS:
+    case GET_SIMLIST_SUCCESS:
       return {
         ...state,
-        messages: {
-          data: action.payload,
+        simList: {
+          data: {...action.payload},
           isFetching: false,
         }
       };
-    case GET_MESSAGE_ERROR:
+    case GET_SIMLIST_ERROR:
       return {
         ...state,
-        messages: {
+        simList: {
           isFetching: false,
         }
       };

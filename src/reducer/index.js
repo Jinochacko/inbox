@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import appInbox from './messages';
+import sim from './sim';
 
 const rootReducer = combineReducers({
-  appInbox
+  sim
 });
 
 export default (state, action) => {

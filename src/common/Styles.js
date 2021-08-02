@@ -7,13 +7,35 @@ const styles = StyleSheet.create({
     statusBar: {
       height: STATUSBAR_HEIGHT,
     },
+    scrollView: {paddingTop: 15, paddingBottom: 15, backgroundColor: '#F6F7F8'},
     rowContent: {flex: 1, flexDirection: 'row', backgroundColor: '#fff'},
-    mainWrap: { borderBottomWidth: 1, borderColor: '#ebebeb', marginBottom: 10, marginTop: 10, paddingBottom: 10, backgroundColor: '#fff'},
-    checkboxWrap: { flex: 1},
-    checkbox:  {borderWidth: 1, borderColor: '#ebebeb'},
+    mainWrap: { margin: 10, marginTop: 0, padding: 20, backgroundColor: '#fff', borderRadius: 5,shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 3,
+    },
+    lightShadow: {
+      borderRadius: 5,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 1,
+    },
+    imageStyle: {width: 75, height: 75},
+    operatorWrap: {padding: 15, paddingRight: 0},
+    operatorItem: {width: 80, height: 80, marginRight: 5, marginBottom: 5, marginLeft: 1, padding: 2},
     profileInfo: {flex: 5},
     alignCenter: {alignItems: 'center', justifyContent: 'center'},
     avatar: {borderRadius: 40, height: 40, width: 40, flex: 2},
+    avatarWrap: {flex: 1},
     nameWrap: {flex: 3, marginLeft: 10},
     dateInfo: {flex: 2},
     textRight: {textAlign: 'right'},
@@ -21,7 +43,7 @@ const styles = StyleSheet.create({
     arrow: {flex: 1},
     clear: {position: 'absolute', top: 8, right: 8, fontSize: 20},
     searchIcon: {left: 8},
-    searchInput: {borderWidth: 1, borderColor: '#ccc', padding: 5, paddingLeft: 35},
+    searchInput: { borderRadius: 20, padding: 5, paddingLeft: 20, backgroundColor: '#fff', width: '100%'},
     searchInputWrap: {flex: 6},
     searchMenu: {flex: 2},
     listItemChevron: {fontSize: 28},
@@ -37,16 +59,16 @@ const styles = StyleSheet.create({
     tileIcon: {fontSize: 30, paddingBottom: 15, color: '#328ba8'},
     tileText: {color: '#328ba8'},
     header: {
-        justifyContent: 'space-around',
         paddingTop: 0,
-        height: 50,
-        borderBottomWidth: 3,
-        borderBottomColor: '#3899b8'
+        height: 100,
     },
+    searchContainer: {width: '100%'},
     activityIndicator: {position: 'absolute', top: 200, right: 200},
     searchMenuIcon: {fontSize: 32, color: '#3899b8'},
-    avatarStyle: {backgroundColor: '#ccc', borderRadius: 50},
-    notFound: {alignSelf: 'center', justifyContent: 'center'}
+    notFound: {alignSelf: 'center', justifyContent: 'center'},
+    planName: {flex: 1, color: "#2AACE2"},
+    alignRight: {alignItems: 'flex-end', justifyContent: 'center'},
+    pageContainer: {height: 300}
 });
 
 export default styles;
